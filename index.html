@@ -4,72 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蒙迪斯總管司</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-
-        /* 定義 Noto Sans TC 本地字體 */
-        @font-face {
-            font-family: 'Noto Sans TC Local'; /* 給字體一個新的名稱 */
-            src: url('assets/fonts/NotoSansTC-Thin.ttf') format('truetype');
-            font-weight: 100; /* 或您實際的 Thin 字重 */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-ExtraLight.ttf') format('truetype');
-            font-weight: 200; /* 或您實際的 ExtraLight 字重 */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-Light.ttf') format('truetype'); /* 圖片中沒有Light.ttf，假設為Regular或省略 */
-            font-weight: 300; /* 或您實際的 Light 字重 */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-Regular.ttf') format('truetype'); /* 如果Regular存在 */
-            font-weight: 400;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-Medium.ttf') format('truetype');
-            font-weight: 500;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-SemiBold.ttf') format('truetype');
-            font-weight: 600; /* 或您實際的 SemiBold 字重 */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-Bold.ttf') format('truetype'); /* 如果Bold存在 */
-            font-weight: 700;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-ExtraBold.ttf') format('truetype');
-            font-weight: 800; /* 或您實際的 ExtraBold 字重 */
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Noto Sans TC Local';
-            src: url('assets/fonts/NotoSansTC-Black.ttf') format('truetype');
-            font-weight: 900; /* 或您實際的 Black 字重 */
-            font-style: normal;
-        }
-        /* 如果您需要可變字體 (Variable Font) */
-        @font-face {
-            font-family: 'Noto Sans TC Local VF'; /* 可變字體通常給單獨的名稱 */
-            src: url('assets/fonts/NotoSansTC-VF.ttf') format('truetype');
-            font-weight: 100 900; /* 定義字重範圍 */
-            font-style: normal;
-        }
-
         /* Variables for easy color management - Light Mode (Default) */
         :root {
             --bg-color: #f0f2f5; /* Light grey */
@@ -131,6 +66,70 @@
             --flag-border: rgba(255,255,255,0.1);
         }
 
+        /* 定義 Noto Sans TC 本地字體 */
+        @font-face {
+            font-family: 'Noto Sans TC Local'; /* 給字體一個新的名稱 */
+            src: url('assets/fonts/NotoSansTC-Thin.ttf') format('truetype');
+            font-weight: 100; /* 或您實際的 Thin 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-ExtraLight.ttf') format('truetype');
+            font-weight: 200; /* 或您實際的 ExtraLight 字重 */
+            font-style: normal;
+        }
+        /* 圖片中沒有Light.ttf 和 Regular.ttf，如果您有請加入 */
+        /* @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        } */
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-SemiBold.ttf') format('truetype');
+            font-weight: 600; /* 或您實際的 SemiBold 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-ExtraBold.ttf') format('truetype');
+            font-weight: 800; /* 或您實際的 ExtraBold 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Black.ttf') format('truetype');
+            font-weight: 900; /* 或您實際的 Black 字重 */
+            font-style: normal;
+        }
+        /* 如果您需要可變字體 (Variable Font) */
+        @font-face {
+            font-family: 'Noto Sans TC Local VF'; /* 可變字體通常給單獨的名稱 */
+            src: url('assets/fonts/NotoSansTC-VF.ttf') format('truetype');
+            font-weight: 100 900; /* 定義字重範圍 */
+            font-style: normal;
+        }
+
         /* Global Styles */
         * {
             margin: 0;
@@ -139,7 +138,7 @@
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Noto Sans TC Local', sans-serif;
             line-height: 1.8;
             color: var(--text-color);
             background-color: var(--bg-color);
@@ -155,12 +154,12 @@
             box-shadow: 0 4px 30px var(--box-shadow-light);
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar - 調整主要佈局 */
         nav {
             background-color: var(--nav-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 0.8rem 0;
+            padding: 0.5rem 1.5rem; /* 減少垂直填充，增加左右填充 */
             position: sticky;
             top: 0;
             z-index: 100;
@@ -168,9 +167,11 @@
             border-bottom: 1px solid var(--border-color-light);
             width: 100%;
             display: flex;
-            flex-direction: column; /* Keep column for title on top */
-            align-items: center;
-            gap: 0.5rem; /* Reduced gap slightly for compact nav */
+            flex-direction: row; /* **關鍵改動：讓標題和連結水平排列** */
+            justify-content: space-between; /* 標題靠左，連結靠右 */
+            align-items: center; /* 垂直居中對齊 */
+            gap: 1rem; /* 標題和連結之間的間距 */
+            flex-wrap: wrap; /* 允許在小螢幕上換行 */
         }
 
         .nav-title {
@@ -179,29 +180,30 @@
             font-weight: 700;
             text-shadow: 0 2px 4px var(--text-shadow-nav-title);
             letter-spacing: 0.1em;
-            padding-bottom: 0.5rem;
+            /* 移除 padding-bottom 以減少垂直高度 */
             white-space: nowrap;
             word-break: keep-all;
+            flex-shrink: 0; /* 防止標題被壓縮 */
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center; /* Center items horizontally */
-            align-items: center; /* Vertically align items if they have different heights */
+            justify-content: flex-end; /* 讓連結靠右對齊 */
+            align-items: center;
             gap: 1.2rem;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-            width: 100%;
+            flex-wrap: wrap; /* 允許連結在空間不足時換行 */
+            padding: 0; /* 移除 ul 內部的填充 */
+            width: auto; /* 讓 ul 只佔用其內容所需的寬度 */
+            flex-grow: 1; /* 允許 ul 填充剩餘空間 */
         }
 
         nav li {
-            /* Ensure li doesn't add extra space, let gap handle it */
             margin: 0;
             padding: 0;
         }
 
-        nav a, #mode-toggle { /* Apply similar styling to the button as to links */
+        nav a, #mode-toggle {
             color: var(--pure-white);
             text-decoration: none;
             padding: 0.7rem 1.2rem;
@@ -211,10 +213,10 @@
             white-space: nowrap;
             background-color: var(--nav-item-bg);
             box-shadow: 0 2px 5px var(--box-shadow-nav-item);
-            border: none; /* Remove default button border */
+            border: none;
             cursor: pointer;
-            font-family: 'Noto Sans TC', sans-serif; /* Ensure button uses Noto Sans */
-            font-size: 1rem; /* Match link font size */
+            font-family: 'Noto Sans TC Local', sans-serif;
+            font-size: 1rem;
         }
 
         nav a:hover, #mode-toggle:hover {
@@ -254,7 +256,7 @@
             border-top-right-radius: 15px;
         }
 
-        #basic-info::before { background-color: #BF9000; } /* Use direct color for accents for now, can be variables */
+        #basic-info::before { background-color: #BF9000; }
         #government::before { background-color: #548235; }
         #diplomatic::before { background-color: #1F4E79; }
         #history::before { background-color: #BF9000; }
@@ -268,7 +270,7 @@
             text-align: center;
             margin-bottom: 3rem;
             font-size: 3.2rem;
-            font-weight: 900;
+            font-weight: 700;
             padding-top: 1.5rem;
             letter-spacing: 0.05em;
             word-break: keep-all;
@@ -280,7 +282,6 @@
             color: var(--h2-color);
             margin-bottom: 2rem;
             font-size: 2.4rem;
-            font-weight: 700;
             padding-bottom: 0.8rem;
             position: relative;
             word-break: keep-all;
@@ -291,7 +292,6 @@
         h2::after {
             content: '';
             position: absolute;
-            font-weight: 700;
             left: 0;
             bottom: 0;
             width: 80px;
@@ -354,7 +354,7 @@
             text-align: center;
             vertical-align: middle;
             font-size: 0.98rem;
-            white-space: nowrap; /* Keep table cell content on one line by default */
+            white-space: nowrap;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
@@ -381,12 +381,12 @@
             font-weight: bold;
             color: var(--h1-color);
             padding: 0.7rem;
-            font-size: 1.5rem;
+            font-size: 1.1rem; /* 增大字體大小 */
             white-space: nowrap;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* Assets/image Styles */
+        /* Image Styles */
         img {
             max-width: 100%;
             height: auto;
@@ -474,19 +474,27 @@
         }
 
         @media (max-width: 768px) {
+            /* 在小螢幕上，讓導航列內容垂直堆疊 */
             nav {
-                padding: 0.5rem 0;
-                gap: 0.5rem;
+                flex-direction: column; /* 重新設定為垂直排列 */
+                justify-content: center; /* 內容居中 */
+                align-items: center; /* 內容垂直居中 */
+                padding: 0.5rem 0; /* 調整垂直填充 */
             }
             .nav-title {
                 font-size: 1.8rem;
+                padding-bottom: 0.5rem; /* 標題下方增加間距 */
+                margin-right: 0; /* 移除右側間距 */
             }
             nav ul {
-                flex-direction: column;
-                align-items: stretch;
+                flex-direction: column; /* 連結項目垂直堆疊 */
+                align-items: stretch; /* 連結項目拉伸至寬度 */
                 gap: 0.5rem;
+                padding: 0 1rem; /* 增加左右填充 */
+                width: 100%; /* 佔滿可用寬度 */
+                flex-grow: 0; /* 不再填充空間 */
             }
-            nav a, #mode-toggle { /* Apply to both links and button */
+            nav a, #mode-toggle {
                 border-radius: 10px;
                 text-align: center;
             }
@@ -528,7 +536,7 @@
 </head>
 <body>
     <nav>
-        <div class="nav-title"><h1>蒙迪斯總管司</h1></div>
+        <div class="nav-title">蒙迪斯總管司</div>
         <ul>
             <li><a href="#basic-info">基本資訊</a></li>
             <li><a href="#government">政府組成</a></li>
@@ -725,18 +733,15 @@
             <h2>更新日誌</h2>
             <hr>
             <div>
-                <h3>1.1</h3>
-                <div>
-                    <h4>2025/07/09 14:11   1.1.0709</h3>
-                    <h5>外交名單 Diplomatic List</h5>
-                    <p>增加各邦交國國旗</p>
-                </div>
-                <hr>
-                <div>
-                    <h4>2025/07/09 14:11   1.1.0709.a</h3>
-                    <h5>外交名單 Diplomatic List</h5>
-                    <p>增加邦交國瓦瑞希爾王國(<strong>🔶大使級</strong>)、華陽聯邦民主共和國(<strong>🔶大使級</strong>)</p>
-                </div>
+                <h3>2025/07/09 14:11   1.1.0709</h3>
+                <h5>外交名單 Diplomatic List</h5>
+                <p>增加各邦交國國旗</p>
+            </div>
+            <hr>
+            <div>
+                <h3>2025/07/09 14:11   1.1.0709.a</h3>
+                <h5>外交名單 Diplomatic List</h5>
+                <p>增加邦交國瓦瑞希爾王國(<strong>🔶大使級</strong>)、華陽聯邦民主共和國(<strong>🔶大使級</strong>)</p>
             </div>
         </section>
     </main>
