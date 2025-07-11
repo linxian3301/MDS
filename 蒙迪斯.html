@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒙迪斯總管司</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+
+        /* 定義 Noto Sans TC 本地字體 */
+        @font-face {
+            font-family: 'Noto Sans TC Local'; /* 給字體一個新的名稱 */
+            src: url('assets/fonts/NotoSansTC-Thin.ttf') format('truetype');
+            font-weight: 100; /* 或您實際的 Thin 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-ExtraLight.ttf') format('truetype');
+            font-weight: 200; /* 或您實際的 ExtraLight 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Light.ttf') format('truetype'); /* 圖片中沒有Light.ttf，假設為Regular或省略 */
+            font-weight: 300; /* 或您實際的 Light 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Regular.ttf') format('truetype'); /* 如果Regular存在 */
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-SemiBold.ttf') format('truetype');
+            font-weight: 600; /* 或您實際的 SemiBold 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Bold.ttf') format('truetype'); /* 如果Bold存在 */
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-ExtraBold.ttf') format('truetype');
+            font-weight: 800; /* 或您實際的 ExtraBold 字重 */
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Noto Sans TC Local';
+            src: url('assets/fonts/NotoSansTC-Black.ttf') format('truetype');
+            font-weight: 900; /* 或您實際的 Black 字重 */
+            font-style: normal;
+        }
+        /* 如果您需要可變字體 (Variable Font) */
+        @font-face {
+            font-family: 'Noto Sans TC Local VF'; /* 可變字體通常給單獨的名稱 */
+            src: url('assets/fonts/NotoSansTC-VF.ttf') format('truetype');
+            font-weight: 100 900; /* 定義字重範圍 */
+            font-style: normal;
+        }
+
+        /* Variables for easy color management - Light Mode (Default) */
+        :root {
+            --bg-color: #f0f2f5; /* Light grey */
+            --text-color: #333; /* Dark grey */
+            --section-bg: #FFFFFF; /* Pure white */
+            --nav-bg: rgba(31, 78, 121, 0.7); /* Translucent Navy Blue */
+            --nav-item-bg: rgba(255, 255, 255, 0.1);
+            --nav-item-hover: #BF9000; /* Sunset Gold */
+            --footer-bg: #1F4E79; /* Navy Blue */
+            --footer-text: #FFFFFF;
+            --h1-color: #1F4E79; /* Navy Blue */
+            --h2-color: #548235; /* Wenshan Green */
+            --h3-color: #BF9000; /* Sunset Gold */
+            --h4-color: #1F4E79; /* Navy Blue */
+            --table-header-bg: #1F4E79; /* Navy Blue */
+            --table-header-text: #FFFFFF;
+            --table-row-even: #f6f8fa; /* Lighter zebra striping */
+            --table-row-hover: #eaf2f8; /* Softer hover color */
+            --table-category-bg: #e0e2e6; /* Medium grey */
+            --hr-color: #e0e2e6; /* Medium grey */
+            --border-color-light: rgba(255, 255, 255, 0.3); /* For glass border */
+            --box-shadow-light: rgba(0, 0, 0, 0.1);
+            --box-shadow-medium: rgba(0,0,0,0.08);
+            --box-shadow-dark: rgba(0,0,0,0.15);
+            --box-shadow-nav-item: rgba(0,0,0,0.05);
+            --box-shadow-nav-item-hover: rgba(0,0,0,0.2);
+            --text-shadow-nav-title: rgba(0,0,0,0.3);
+            --flag-border: rgba(0,0,0,0.1);
+            --pure-white: #FFFFFF; /* Moved to root for better variable usage */
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-color: #1a1a2e; /* Dark background */
+            --text-color: #e0e0e0; /* Light text */
+            --section-bg: #2a2a4a; /* Darker section background */
+            --nav-bg: rgba(25, 25, 45, 0.7); /* Darker translucent nav */
+            --nav-item-bg: rgba(255, 255, 255, 0.05);
+            --nav-item-hover: #BF9000; /* Sunset Gold (can keep same or adjust) */
+            --footer-bg: #16213e; /* Even darker footer */
+            --footer-text: #e0e0e0;
+            --h1-color: #ADD8E6; /* Light blue */
+            --h2-color: #90EE90; /* Light green */
+            --h3-color: #FFD700; /* Gold */
+            --h4-color: #ADD8E6; /* Light blue */
+            --table-header-bg: #16213e; /* Dark table header */
+            --table-header-text: #FFFFFF;
+            --table-row-even: #21213c; /* Darker zebra striping */
+            --table-row-hover: #35355a; /* Darker hover */
+            --table-category-bg: #3c3c6a;
+            --hr-color: #3c3c6a;
+            --border-color-light: rgba(255, 255, 255, 0.1);
+            --box-shadow-light: rgba(0, 0, 0, 0.2);
+            --box-shadow-medium: rgba(0,0,0,0.15);
+            --box-shadow-dark: rgba(0,0,0,0.25);
+            --box-shadow-nav-item: rgba(0,0,0,0.1);
+            --box-shadow-nav-item-hover: rgba(0,0,0,0.3);
+            --text-shadow-nav-title: rgba(0,0,0,0.5);
+            --flag-border: rgba(255,255,255,0.1);
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Utility for Glassmorphism */
+        .glass-effect {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color-light);
+            box-shadow: 0 4px 30px var(--box-shadow-light);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--box-shadow-dark);
+            border-bottom: 1px solid var(--border-color-light);
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Keep column for title on top */
+            align-items: center;
+            gap: 0.5rem; /* Reduced gap slightly for compact nav */
+        }
+
+        .nav-title {
+            color: var(--pure-white);
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px var(--text-shadow-nav-title);
+            letter-spacing: 0.1em;
+            padding-bottom: 0.5rem;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            align-items: center; /* Vertically align items if they have different heights */
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        nav li {
+            /* Ensure li doesn't add extra space, let gap handle it */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a, #mode-toggle { /* Apply similar styling to the button as to links */
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+            background-color: var(--nav-item-bg);
+            box-shadow: 0 2px 5px var(--box-shadow-nav-item);
+            border: none; /* Remove default button border */
+            cursor: pointer;
+            font-family: 'Noto Sans TC', sans-serif; /* Ensure button uses Noto Sans */
+            font-size: 1rem; /* Match link font size */
+        }
+
+        nav a:hover, #mode-toggle:hover {
+            background-color: var(--nav-item-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--box-shadow-nav-item-hover);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            width: 90%;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background-color: var(--section-bg);
+            margin-bottom: 2.5rem;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--box-shadow-medium);
+            overflow: hidden;
+            position: relative;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        /* Section border accents */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        #basic-info::before { background-color: #BF9000; } /* Use direct color for accents for now, can be variables */
+        #government::before { background-color: #548235; }
+        #diplomatic::before { background-color: #1F4E79; }
+        #history::before { background-color: #BF9000; }
+        #diplomacy::before { background-color: #548235; }
+        #announcements::before { background-color: #1F4E79; }
+        #transportation::before { background-color: #BF9000; }
+        #updates::before { background-color: #548235; }
+
+        h1 {
+            color: var(--h1-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 3.2rem;
+            font-weight: 700;
+            padding-top: 1.5rem;
+            letter-spacing: 0.05em;
+            word-break: keep-all;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        h2 {
+            color: var(--h2-color);
+            margin-bottom: 2rem;
+            font-size: 2.4rem;
+            padding-bottom: 0.8rem;
+            position: relative;
+            word-break: keep-all;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--h2-color);
+            border-radius: 2px;
+            transition: background-color 0.5s ease;
+        }
+
+        h3 {
+            color: var(--h3-color);
+            margin: 2.5rem 0 1.2rem 0;
+            font-size: 1.9rem;
+            font-weight: 600;
+            word-break: keep-all;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        h4 {
+            color: var(--h4-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 500;
+            word-break: keep-all;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        h5 {
+            font-weight: bold;
+            margin-top: 1.2rem;
+            font-size: 1.15rem;
+            color: var(--text-color);
+            word-break: keep-all;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            transition: color 0.5s ease;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--box-shadow-medium);
+        }
+
+        th, td {
+            border: none;
+            padding: 1.1rem;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.98rem;
+            white-space: nowrap; /* Keep table cell content on one line by default */
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--table-header-text);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: var(--table-row-even);
+        }
+
+        tbody tr:hover {
+            background-color: var(--table-row-hover);
+            transform: scale(1.005);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Specific style for category rows in diplomatic list */
+        .diplomatic-list tbody tr td[colspan="6"] {
+            background-color: var(--table-category-bg) !important;
+            font-weight: bold;
+            color: var(--h1-color);
+            padding: 0.7rem;
+            font-size: 1.5rem;
+            white-space: nowrap;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Assets/image Styles */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px var(--box-shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.5s ease;
+        }
+
+        img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Diplomatic List Specific Styles */
+        .diplomatic-list {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        .diplomatic-list table {
+            min-width: 900px;
+        }
+
+        .diplomatic-list img {
+            height: 28px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            box-shadow: none;
+            border-radius: 4px;
+            border: 1px solid var(--flag-border);
+            transition: border-color 0.5s ease;
+        }
+
+        .diplomatic-list td:first-child {
+            font-weight: bold;
+        }
+
+        /* Horizontal Rule (Divider) */
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(0,0,0,0), var(--hr-color), rgba(0,0,0,0));
+            margin: 3.5rem 0;
+            transition: background 0.5s ease;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            font-size: 0.95rem;
+            border-top: 8px solid #BF9000;
+            border-radius: 15px 15px 0 0;
+            width: 100%;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            main {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            main {
+                max-width: 95%;
+                padding: 0 1rem;
+            }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            h3 { font-size: 1.8rem; }
+            h4 { font-size: 1.4rem; }
+            h5 { font-size: 1.1rem; }
+            p { font-size: 1rem; }
+            section { padding: 2rem; }
+            .diplomatic-list table { min-width: 800px; }
+            .nav-title { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem 0;
+                gap: 0.5rem;
+            }
+            .nav-title {
+                font-size: 1.8rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+            nav a, #mode-toggle { /* Apply to both links and button */
+                border-radius: 10px;
+                text-align: center;
+            }
+            main {
+                padding: 0 1rem;
+            }
+            section {
+                padding: 1.8rem;
+                border-radius: 10px;
+            }
+            section::before {
+                height: 5px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h2::after { width: 60px; height: 3px; }
+            h3 { font-size: 1.6rem; }
+            th, td {
+                padding: 0.8rem;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .diplomatic-list img { height: 20px; }
+            footer { border-radius: 10px 10px 0 0; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-title { font-size: 1.5rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.4rem; }
+            p { font-size: 0.95rem; }
+            section { padding: 1.2rem; }
+            .diplomatic-list table { min-width: 600px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-title">蒙迪斯總管司</div>
+        <ul>
+            <li><a href="#basic-info">基本資訊</a></li>
+            <li><a href="#government">政府組成</a></li>
+            <li><a href="#diplomatic">外交名單</a></li>
+            <li><a href="#history">歷史</a></li>
+            <li><a href="#diplomacy">外交資料</a></li>
+            <li><a href="#announcements">公告</a></li>
+            <li><a href="#transportation">交通</a></li>
+            <li><a href="#updates">更新日誌</a></li>
+            <li><button id="mode-toggle">切換模式 (深/淺)</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="basic-info">
+            <h2>基本資訊</h2>
+            <h3>國名</h3>
+            <p>蒙迪斯總管司(英文:Mounddies Headgovern 德文:Mounddies Headgovern 法文:Mounddies Headgovern 義大利文:Mounddies Headgovern 日文:もんつきふくおりょう)</p>
+
+            <h3>地理位置</h3>
+            <img src="assets/image/地理位置.png" alt="地理位置" width="30%">
+            <p>宣稱領土包含英國、法國、德國、比利時、荷蘭</p>
+            <p>實際領土包含台灣台南，日本札幌、新千歲</p>
+
+            <hr>
+            <h4>司旗</h4>
+            <img src="assets/image/司旗.png" alt="司旗" width="35.6%">
+            <table>
+                <thead>
+                    <tr>
+                        <th>顏色</th>
+                        <th>色號(sRGB)</th>
+                        <th>意義</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>海軍藍</td>
+                        <td>#1F4E79</td>
+                        <td>博愛</td>
+                    </tr>
+                    <tr>
+                        <td>夕陽金</td>
+                        <td>#BF9000</td>
+                        <td>誠信</td>
+                    </tr>
+                    <tr>
+                        <td>純白色</td>
+                        <td>#FFFFFF</td>
+                        <td>和平</td>
+                    </tr>
+                    <tr>
+                        <td>文山綠</td>
+                        <td>#548235</td>
+                        <td>穩定</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <h4>司徽</h4>
+            <img src="assets/image/司徽.png" alt="司徽" width="15%">
+            <p>司徽由海軍藍和夕陽金組成一個"權力之心"，其個別代表夕陽院(監察院)和月海院(行政院)，其中夕陽金占了五分，海軍藍占了三分，也寓意"主權在民"的概念</p>
+        </section>
+
+        <section id="government">
+            <h2>政府組成</h2>
+            <img src="assets/image/行政架構.png" alt="政府組成圖">
+        </section>
+
+        <section id="diplomatic">
+            <h2>外交名單</h2>
+            <h3>外交名單 Diplomatic List</h3>
+            <div class="diplomatic-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>編號</th>
+                            <th>外交等級</th>
+                            <th>國家代號</th>
+                            <th>國家名</th>
+                            <th>日期</th>
+                            <th>國旗</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔶大使級</strong></td></tr>
+                        <tr><td>01</td><td><strong>🔶大使級</strong></td><td>SFR</td><td>蘇華聯邦共和國</td><td>2024/09/29</td><td><img src="assets/image/SFR.png" alt="SFR Flag"></td></tr>
+                        <tr><td>02</td><td><strong>🔶大使級</strong></td><td>DT</td><td>丹特聯邦共和國</td><td>2024/10/03</td><td><img src="assets/image/DT.png" alt="DT Flag"></td></tr>
+                        <tr><td>03</td><td><strong>🔶大使級</strong></td><td>HZS</td><td>華辰沙光顧國</td><td>2024/11/09</td><td><img src="assets/image/HZS.png" alt="HZS Flag"></td></tr>
+                        <tr><td>04</td><td><strong>🔶大使級</strong></td><td>TKU</td><td>津輕黑石東亞主權聯合帝國邦聯民主共和國聯盟</td><td>2024/11/10</td><td><img src="assets/image/TKU.png" alt="TKU Flag"></td></tr>
+                        <tr><td>05</td><td><strong>🔶大使級</strong></td><td>LR</td><td>拉納卡共和國</td><td>2024/11/15</td><td><img src="assets/image/LR.png" alt="LR Flag"></td></tr>
+                        <tr><td>06</td><td><strong>🔶大使級</strong></td><td>NR</td><td>納爾斯聯邦</td><td>2024/12/08</td><td><img src="assets/image/NR.png" alt="NR Flag"></td></tr>
+                        <tr><td>07</td><td><strong>🔶大使級</strong></td><td>CCL</td><td>盧米涅企業共和國</td><td>2024/12/08</td><td><img src="assets/image/CCL.png" alt="CCL Flag"></td></tr>
+                        <tr><td>08</td><td><strong>🔶大使級</strong></td><td>SAR</td><td>薩爾多利亞共和國</td><td>2024/12/10</td><td><img src="assets/image/SAR.png" alt="SAR Flag"></td></tr>
+                        <tr><td>09</td><td><strong>🔶大使級</strong></td><td>KR</td><td>克維爾帝國</td><td>2024/12/17</td><td><img src="assets/image/KR.png" alt="KR Flag"></td></tr>
+                        <tr><td>10</td><td><strong>🔶大使級</strong></td><td>MSFM</td><td>晨弦霧月共和國</td><td>2024/12/17</td><td><img src="assets/image/MSFM.png" alt="MSFM Flag"></td></tr>
+                        <tr><td>11</td><td><strong>🔶大使級</strong></td><td>SHK</td><td>聖赫提斯王國</td><td>2024/12/31</td><td><img src="assets/image/SHK.png" alt="SHK Flag"></td></tr>
+                        <tr><td>12</td><td><strong>🔶大使級</strong></td><td>CW</td><td>彩維利亞</td><td>2025/01/02</td><td><img src="assets/image/CW.png" alt="CW Flag"></td></tr>
+                        <tr><td>13</td><td><strong>🔶大使級</strong></td><td>HZFR</td><td>紅花坂聯邦</td><td>2025/01/10</td><td><img src="assets/image/HZFR.png" alt="HZFR Flag"></td></tr>
+                        <tr><td>14</td><td><strong>🔶大使級</strong></td><td>SRS</td><td>斯維特拉克社會主義共和國</td><td>2025/01/18</td><td><img src="assets/image/SRS.png" alt="SRS Flag"></td></tr>
+                        <tr><td>15</td><td><strong>🔶大使級</strong></td><td>TTS</td><td>塔爾塔洛斯聯合議會共和國聯邦</td><td>2025/01/22</td><td><img src="assets/image/TTS.png" alt="TTS Flag"></td></tr>
+                        <tr><td>16</td><td><strong>🔶大使級</strong></td><td>FOR</td><td>紅石聯邦共和國</td><td>2025/01/26</td><td><img src="assets/image/FOR.png" alt="FOR Flag"></td></tr>
+                        <tr><td>17</td><td><strong>🔶大使級</strong></td><td>FROW</td><td>西瓜聯邦共和國</td><td>2025/02/17</td><td><img src="assets/image/FROW.png" alt="FROW Flag"></td></tr>
+                        <tr><td>18</td><td><strong>🔶大使級</strong></td><td>NCR</td><td>中蓮共和國</td><td>2025/03/17</td><td><img src="assets/image/NCR.png" alt="NCR Flag"></td></tr>
+                        <tr><td>19</td><td><strong>🔶大使級</strong></td><td>YSSF</td><td>約克塞斯蘇維埃社會主義聯盟</td><td>2025/03/25</td><td><img src="assets/image/YSSF.png" alt="YSSF Flag"></td></tr>
+                        <tr><td>20</td><td><strong>🔶大使級</strong></td><td>NGL</td><td>北格蘭共和國</td><td>2025/04/04</td><td><img src="assets/image/NGL.png" alt="NGL Flag"></td></tr>
+                        <tr><td>21</td><td><strong>🔶大使級</strong></td><td>DRZ</td><td>正介民國</td><td>2025/04/10</td><td><img src="assets/image/DRZ.png" alt="DRZ Flag"></td></tr>
+                        <tr><td>22</td><td><strong>🔶大使級</strong></td><td>OFE</td><td>奧沃特聯邦帝國</td><td>2025/04/20</td><td><img src="assets/image/OFE.png" alt="OFE Flag"></td></tr>
+                        <tr><td>23</td><td><strong>🔶大使級</strong></td><td>KWL</td><td>威爾蘭王國</td><td>2025/05/04</td><td><img src="assets/image/KWL.png" alt="KWL Flag"></td></tr>
+                        <tr><td>24</td><td><strong>🔶大使級</strong></td><td>CDR</td><td>華原民國</td><td>2025/05/04</td><td><img src="assets/image/CDR.png" alt="CDR Flag"></td></tr>
+                        <tr><td>25</td><td><strong>🔶大使級</strong></td><td>NFD</td><td>新法德利亞聯邦</td><td>2025/05/07</td><td><img src="assets/image/NFD.png" alt="NFD Flag"></td></tr>
+                        <tr><td>26</td><td><strong>🔶大使級</strong></td><td>ROL</td><td>荷月聯邦共和國</td><td>2025/05/19</td><td><img src="assets/image/ROL2.png" alt="ROL2 Flag"></td></tr>
+                        <tr><td>27</td><td><strong>🔶大使級</strong></td><td>ROL</td><td>利薩尼亞共和國</td><td>2025/05/23</td><td><img src="assets/image/ROL.png" alt="ROL Flag"></td></tr>
+                        <tr><td>28</td><td><strong>🔶大使級</strong></td><td>KH</td><td>和爾尼亞王國</td><td>2025/05/30</td><td><img src="assets/image/KH.png" alt="KH Flag"></td></tr>
+                        <tr><td>29</td><td><strong>🔶大使級</strong></td><td>WME</td><td>黃名帝國</td><td>2025/05/31</td><td><img src="assets/image/WME.png" alt="WME Flag"></td></tr>
+                        <tr><td>30</td><td><strong>🔶大使級</strong></td><td>FRTB</td><td>超渡嗜血聯邦共和國</td><td>2025/06/15</td><td><img src="assets/image/FRTB.png" alt="FRTB Flag"></td></tr>
+                        <tr><td>31</td><td><strong>🔶大使級</strong></td><td>YE</td><td>炎夏帝國</td><td>2025/06/15</td><td><img src="assets/image/YE.png" alt="YE Flag"></td></tr>
+                        <tr><td>32</td><td><strong>🔶大使級</strong></td><td>KV</td><td>瓦瑞希爾王國</td><td>2025/06/15</td><td><img src="assets/image/KV.png" alt="KV Flag"></td></tr>
+                        <tr><td>33</td><td><strong>🔶大使級</strong></td><td>FDH</td><td>華陽聯邦民主共和國</td><td>2025/06/15</td><td><img src="assets/image/FDH.png" alt="FDH Flag"></td></tr>
+                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔸公使級</strong></td></tr>
+                        <tr><td>01</td><td><strong>🔸公使級</strong></td><td>SDR</td><td>南約民主共和國</td><td>2025/03/12</td><td><img src="assets/image/SDR.png" alt="SDR Flag"></td></tr>
+                        <tr><td>02</td><td><strong>🔸公使級</strong></td><td>DRN</td><td>南茗民主共和國</td><td>2025/03/13</td><td><img src="assets/image/DRN.png" alt="DRN Flag"></td></tr>
+                        <tr><td>03</td><td><strong>🔸公使級</strong></td><td>VIS</td><td>布埃納維斯塔聯邦共和國</td><td>2025/03/16</td><td><img src="assets/image/VIS.png" alt="VIS Flag"></td></tr>
+                        <tr><td>04</td><td><strong>🔸公使級</strong></td><td>FRK</td><td>坤曼民主聯邦共和國</td><td>2025/06/15</td><td><img src="assets/image/FRK.png" alt="FRK Flag"></td></tr>
+                        <tr><td>05</td><td><strong>🔸公使級</strong></td><td>SDR</td><td>德納斯社會民主主義共和國</td><td>2025/06/16</td><td><img src="assets/image/SDR2.png" alt="SDR2 Flag"></td></tr>
+                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔷代表級</strong></td></tr>
+                        <tr><td>01</td><td><strong>🔷代表級</strong></td><td>HJS</td><td>華江斯坦君憲國</td><td>2025/05/04</td><td><img src="assets/image/HJS.png" alt="HJS Flag"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="government">
+            <h2>政府組成</h2>
+            <img src="assets/image/行政架構.png" alt="政府組成圖">
+        </section>
+
+        <section id="history">
+            <h2>歷史</h2>
+            <hr>
+            <div>
+                <h3>無國界時期</h3>
+                <h4>(2024/09/12 – 2024/10/13)</h4>
+                <p>蒙迪斯總管司的歷史始於一個獨特的時期，當時它還被稱為「無國界蒙迪斯總管司」。這個實體並非傳統意義上的國家，而是一個以分散式治理和開放協作為核心的實驗性組織。在 2024 年 9 月 12 日成立之初，它旨在探索超越地理界限的社會運作模式。其核心理念是服務與管理，致力於為全球範圍內的需求提供協助與支援。這段時期，無國界蒙迪斯總管司主要透過線上平台和分散式網路進行運作，吸引了來自不同背景的參與者，共同協作解決問題，並探索新的社會組織形態。儘管不具備主權國家的任何特徵，但這段時間的理念實驗為後來的發展奠定了基礎。</p>
+            </div>
+            <div>
+                <h3>第一白色時期</h3>
+                <h4>(2024/10/13 – 2025/01/25)</h4>
+                <p>2024 年 10 月 13 日，無國界蒙迪斯總管司經歷了一次重要的轉型，正式更名為「蒙迪斯總管司」，並開始明確其作為一個國家實體的各項基本要素。這標誌著從一個非傳統組織向主權國家過渡的開端。在此期間，蒙迪斯總管司逐步確立了其領土範圍、國界、常住人口、政府組織、法律體系以及貨幣等國家要素。</p>
+                <p>政府架構在這一時期逐漸成形，確立了總管制的領導模式，旨在維持高度的效率與服務性。法律的制定著重於公平與透明，以保障公民權利並規範社會秩序。同時，蒙迪斯總管司也開始規劃其經濟體系，並發行了專屬貨幣，以支持其內部運作與發展。雖然對外活動仍處於初步階段，但內部基礎建設的完成，為其未來參與國際事務奠定了堅實的根基。</p>
+            </div>
+            <div>
+                <h3>總管司時期</h3>
+                <h4>(2025/01/25 – 至今)</h4>
+                <p>自 2025 年 1 月 25 日起，蒙迪斯總管司正式進入了其「總管司時期」。此階段的重點是積極參與國際事務並拓展對外關係。蒙迪斯總管司開始向國際社會展現其作為一個主權國家的形象與價值觀。</p>
+                <p>在此期間，蒙迪斯總管司積極尋求加入各種國際組織。這些努力旨在與其他國家建立外交關係，共同應對全球挑戰，並促進國際合作。蒙迪斯總管司將其服務與管理的核心理念融入到外交政策中，致力於在國際舞台上扮演一個負責任且建設性的角色。隨著對外活動的增加，蒙迪斯總管司也將面臨更多國際法規、貿易協定和文化交流的議題，進一步完善其國家治理體系，並鞏固其在國際社會中的地位。</p>
+            </div>
+        </section>
+
+        <section id="diplomacy">
+            <h2>外交資料</h2>
+            <hr>
+            <h3>邦交須知</h3>
+            <img src="assets/image/邦交須知.png" alt="邦交須知" width="50%">
+            <h3>邦交申請</h3>
+            <img src="assets/image/邦交申請.png" alt="邦交申請" width="50%">
+            <h3>建交公報</h3>
+            <img src="assets/image/建交公報.png" alt="建交公報" width="50%">
+            <h3>國書</h3>
+            <img src="assets/image/國書.png" alt="國書" width="50%">
+        </section>
+
+        <section id="announcements">
+            <h2>公告</h2>
+            <hr>
+            <h3>公告書</h3>
+            <img src="assets/image/公告書.png" alt="公告書" width="50%">
+            <h3>級別標準</h3>
+            <img src="assets/image/級別標準.png" alt="級別標準" width="50%">
+        </section>
+
+        <section id="transportation">
+            <h2>交通(宣稱領土未來建設方案)</h2>
+            <hr>
+            <h3>高速公路</h3>
+            <img src="assets/image/高速公路.png" alt="高速公路" width="50%">
+            <h3>公車</h3>
+            <img src="assets/image/公車.png" alt="公車" width="50%">
+            <h3>捷運</h3>
+            <img src="assets/image/捷運.png" alt="捷運" width="50%">
+        </section>
+
+        <section id="updates">
+            <h2>更新日誌</h2>
+            <hr>
+            <div>
+                <h3>1.1</h3>
+                <div>
+                    <h4>2025/07/09 14:11   1.1.0709</h3>
+                    <h5>外交名單 Diplomatic List</h5>
+                    <p>增加各邦交國國旗</p>
+                </div>
+                <hr>
+                <div>
+                    <h4>2025/07/09 14:11   1.1.0709.a</h3>
+                    <h5>外交名單 Diplomatic List</h5>
+                    <p>增加邦交國瓦瑞希爾王國(<strong>🔶大使級</strong>)、華陽聯邦民主共和國(<strong>🔶大使級</strong>)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 蒙迪斯總管司. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Check for OS preference if no saved theme
+            body.classList.add('dark-mode');
+        }
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            let theme = 'light-mode'; // Default to light
+            if (body.classList.contains('dark-mode')) {
+                theme = 'dark-mode';
+            }
+            localStorage.setItem('theme', theme); // Save preference
+        });
+    </script>
+</body>
+</html>
+
