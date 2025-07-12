@@ -159,7 +159,7 @@
             background-color: var(--nav-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 0.5rem 1.5rem; /* 減少垂直填充，增加左右填充 */
+            padding: 0.5rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -167,11 +167,12 @@
             border-bottom: 1px solid var(--border-color-light);
             width: 100%;
             display: flex;
-            flex-direction: row; /* **關鍵改動：讓標題和連結水平排列** */
+            flex-direction: row; /* 桌面版改為水平排列 */
             justify-content: space-between; /* 標題靠左，連結靠右 */
             align-items: center; /* 垂直居中對齊 */
-            gap: 1rem; /* 標題和連結之間的間距 */
-            flex-wrap: wrap; /* 允許在小螢幕上換行 */
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-radius: 15px; /* 導覽列圓框 */
         }
 
         .nav-title {
@@ -180,22 +181,26 @@
             font-weight: 700;
             text-shadow: 0 2px 4px var(--text-shadow-nav-title);
             letter-spacing: 0.1em;
-            /* 移除 padding-bottom 以減少垂直高度 */
             white-space: nowrap;
             word-break: keep-all;
-            flex-shrink: 0; /* 防止標題被壓縮 */
+            flex-shrink: 0;
+            padding-bottom: 0; /* 移除下方間距 */
+            text-align: left; /* 標題靠左 */
+            width: auto; /* 讓標題根據內容決定寬度 */
+            margin-right: auto; /* 將導覽項目推到最右邊 */
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: flex-end; /* 讓連結靠右對齊 */
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap; /* 允許連結在空間不足時換行 */
-            padding: 0; /* 移除 ul 內部的填充 */
+            flex-direction: row; /* 連結項目水平堆疊 */
+            align-items: center; /* 連結項目垂直居中 */
+            gap: 1.2rem; /* 連結之間的間距 */
+            padding: 0;
             width: auto; /* 讓 ul 只佔用其內容所需的寬度 */
             flex-grow: 1; /* 允許 ul 填充剩餘空間 */
+            flex-wrap: wrap; /* 允許在空間不足時換行 */
+            transition: max-height 0.5s ease-out; /* 平滑展開效果 */
         }
 
         nav li {
@@ -207,7 +212,7 @@
             color: var(--pure-white);
             text-decoration: none;
             padding: 0.7rem 1.2rem;
-            border-radius: 25px;
+            border-radius: 25px; /* 更圓的按鈕樣式 */
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: 500;
             white-space: nowrap;
@@ -217,12 +222,26 @@
             cursor: pointer;
             font-family: 'Noto Sans TC Local', sans-serif;
             font-size: 1rem;
+            display: block; /* 讓整個區域可點擊 */
+            text-align: center; /* 文字居中 */
         }
 
         nav a:hover, #mode-toggle:hover {
             background-color: var(--nav-item-hover);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px var(--box-shadow-nav-item-hover);
+        }
+
+        /* 新增漢堡選單按鈕樣式 */
+        .hamburger-menu {
+            display: none; /* 預設隱藏，只在小螢幕顯示 */
+            color: var(--pure-white);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            margin-left: auto; /* 推到右邊 */
         }
 
         /* Main Content */
@@ -474,30 +493,52 @@
         }
 
         @media (max-width: 768px) {
-            /* 在小螢幕上，讓導航列內容垂直堆疊 */
             nav {
-                flex-direction: row; /* 重新設定為垂直排列 */
-                justify-content: center; /* 內容居中 */
-                align-items: center; /* 內容垂直居中 */
-                padding: 1rem 0; /* 調整垂直填充 */
+                flex-direction: row; /* 在小螢幕上，標題和漢堡按鈕水平排列 */
+                justify-content: space-between; /* 標題靠左，漢堡靠右 */
+                align-items: center;
+                padding: 0.5rem 1rem;
+                border-radius: 0; /* 手機版導覽列通常不需要圓角 */
             }
+
             .nav-title {
                 font-size: 1.8rem;
-                padding-bottom: 0.5rem; /* 標題下方增加間距 */
-                margin-right: 0; /* 移除右側間距 */
+                padding-bottom: 0; /* 移除下方間距，因為漢堡菜單在旁邊 */
+                text-align: left; /* 標題靠左 */
+                width: auto; /* 讓標題根據內容決定寬度 */
+                margin-right: auto; /* 將漢堡按鈕推到最右邊 */
             }
+
+            .hamburger-menu {
+                display: block; /* 在小螢幕顯示漢堡按鈕 */
+            }
+
             nav ul {
-                flex-direction: row; /* 連結項目垂直堆疊 */
+                position: absolute; /* 絕對定位，脫離文檔流 */
+                top: 100%; /* 位於導覽列下方 */
+                left: 0;
+                width: 100%;
+                background-color: var(--nav-bg); /* 菜單背景 */
+                box-shadow: 0 5px 15px var(--box-shadow-dark);
+                border-top: 1px solid var(--border-color-light);
+                padding: 1rem; /* 增加填充 */
+                z-index: 99; /* 確保在內容上方 */
+                max-height: 0; /* 在手機上預設收合 */
+                overflow: hidden; /* 隱藏溢出內容 */
+                flex-direction: column; /* 手機版列表垂直堆疊 */
                 align-items: stretch; /* 連結項目拉伸至寬度 */
-                gap: 1.7rem;
-                padding: 0 1rem; /* 增加左右填充 */
-                width: 100%; /* 佔滿可用寬度 */
-                flex-grow: 1; /* 不再填充空間 */
+                gap: 0.5rem; /* 連結之間的間距 */
             }
+
+            nav ul.open {
+                max-height: 500px; /* 展開時的高度 */
+                overflow: visible; /* 展開時可見 */
+            }
+
             nav a, #mode-toggle {
-                border-radius: 10px;
-                text-align: center;
+                border-radius: 10px; /* 手機版按鈕圓角可以小一點 */
             }
+
             main {
                 padding: 0 1rem;
             }
@@ -537,6 +578,8 @@
 <body>
     <nav>
         <div class="nav-title">蒙迪斯總管司</div>
+        <!-- 新增漢堡選單按鈕，只在小螢幕顯示 -->
+        <button class="hamburger-menu" id="hamburger-toggle">&#9776;</button> <!-- &#9776; 是漢堡圖示的 HTML 實體 -->
         <ul>
             <li><a href="#basic-info">基本資訊</a></li>
             <li><a href="#government">政府組成</a></li>
@@ -622,7 +665,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔶大使級</strong></td></tr>
+                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>�大使級</strong></td></tr>
                         <tr><td>01</td><td><strong>🔶大使級</strong></td><td>SFR</td><td>蘇華聯邦共和國</td><td>2024/09/29</td><td><img src="assets/image/SFR.png" alt="SFR Flag"></td></tr>
                         <tr><td>02</td><td><strong>🔶大使級</strong></td><td>DT</td><td>丹特聯邦共和國</td><td>2024/10/03</td><td><img src="assets/image/DT.png" alt="DT Flag"></td></tr>
                         <tr><td>03</td><td><strong>🔶大使級</strong></td><td>HZS</td><td>華辰沙光顧國</td><td>2024/11/09</td><td><img src="assets/image/HZS.png" alt="HZS Flag"></td></tr>
@@ -753,6 +796,8 @@
     <script>
         const modeToggle = document.getElementById('mode-toggle');
         const body = document.body;
+        const hamburgerToggle = document.getElementById('hamburger-toggle'); // 獲取漢堡按鈕
+        const navUl = document.querySelector('nav ul'); // 獲取 ul 元素
 
         // Check for saved theme preference
         const currentTheme = localStorage.getItem('theme');
@@ -771,6 +816,22 @@
             }
             localStorage.setItem('theme', theme); // Save preference
         });
+
+        // 漢堡選單點擊事件
+        hamburgerToggle.addEventListener('click', () => {
+            navUl.classList.toggle('open'); // 切換 'open' class
+        });
+
+        // 點擊導覽連結後收合選單 (可選)
+        navUl.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // 確保只在小螢幕模式下點擊連結才收合選單
+                if (window.innerWidth <= 768) {
+                    navUl.classList.remove('open');
+                }
+            });
+        });
     </script>
 </body>
 </html>
+�
