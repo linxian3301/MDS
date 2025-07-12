@@ -499,6 +499,7 @@
                 align-items: center;
                 padding: 0.5rem 1rem;
                 border-radius: 0; /* 手機版導覽列通常不需要圓角 */
+                border-bottom: none; /* 移除導覽列下方的邊框，解決突出問題 */
             }
 
             .nav-title {
@@ -520,7 +521,7 @@
                 width: 100%;
                 background-color: var(--nav-bg); /* 菜單背景 */
                 box-shadow: 0 5px 15px var(--box-shadow-dark);
-                border-top: 1px solid var(--border-color-light);
+                border-top: none; /* 移除手機版選單上方的邊框，解決突出問題 */
                 padding: 1rem; /* 增加填充 */
                 z-index: 99; /* 確保在內容上方 */
                 max-height: 0; /* 在手機上預設收合 */
@@ -665,7 +666,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>�大使級</strong></td></tr>
+                        <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔶大使級</strong></td></tr>
                         <tr><td>01</td><td><strong>🔶大使級</strong></td><td>SFR</td><td>蘇華聯邦共和國</td><td>2024/09/29</td><td><img src="assets/image/SFR.png" alt="SFR Flag"></td></tr>
                         <tr><td>02</td><td><strong>🔶大使級</strong></td><td>DT</td><td>丹特聯邦共和國</td><td>2024/10/03</td><td><img src="assets/image/DT.png" alt="DT Flag"></td></tr>
                         <tr><td>03</td><td><strong>🔶大使級</strong></td><td>HZS</td><td>華辰沙光顧國</td><td>2024/11/09</td><td><img src="assets/image/HZS.png" alt="HZS Flag"></td></tr>
@@ -834,4 +835,3 @@
     </script>
 </body>
 </html>
-�
