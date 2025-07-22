@@ -446,6 +446,32 @@
             font-weight: bold;
         }
 
+        /* Joined the organization list */
+        .Joined-the-organization-list {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        .Joined-the-organization-list table {
+            min-width: 900px;
+        }
+
+        .Joined-the-organization-list img {
+            height: 28px;
+            width: auto;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            box-shadow: none;
+            border-radius: 4px;
+            border: 1px solid var(--flag-border);
+            transition: border-color 0.5s ease;
+        }
+
+        .Joined-the-organization-list td:first-child {
+            font-weight: bold;
+        }
+
         /* Horizontal Rule (Divider) */
         hr {
             border: 0;
@@ -651,7 +677,7 @@
         </section>
 
         <section id="diplomatic">
-            <h2>外交名單</h2>
+            <h2>外交名單 / 加入組織</h2>
             <h3>外交名單 Diplomatic List</h3>
             <div class="diplomatic-list">
                 <table>
@@ -708,6 +734,51 @@
                         <tr><td>05</td><td><strong>🔸公使級</strong></td><td>SDR</td><td>德納斯社會民主主義共和國</td><td>2025/06/16</td><td><img src="assets/image/SDR2.png" alt="SDR2 Flag"></td></tr>
                         <tr><td colspan="6" style="background-color: #f0f0f0;"><strong>🔷代表級</strong></td></tr>
                         <tr><td>01</td><td><strong>🔷代表級</strong></td><td>HJS</td><td>華江斯坦君憲國</td><td>2025/05/04</td><td><img src="assets/image/HJS.png" alt="HJS Flag"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>外交名單 Joined the organization list</h3>
+            <div class="Joined-the-organization-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>編號</th>
+                            <th>組織名稱</th>
+                            <th>英文代號</th>
+                            <th>加入日期</th>
+                            <th>組織旗幟</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>微國國際民航組織</td>
+                            <td>MISCAO</td>
+                            <td>2024/10/25</td>
+                            <td><img src="assets/image/Z_MISCAO.png" alt="SDR Flag"></td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>聯合微國家組織</td>
+                            <td>FUMO</td>
+                            <td>2024/11/03</td>
+                            <td><img src="assets/image/Z_FUMO.png" alt="SDR Flag"></td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>北嶺聯盟</td>
+                            <td>BA</td>
+                            <td>2024/11/15</td>
+                            <td>暫無</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>微國家聯盟</td>
+                            <td>MU</td>
+                            <td>2025/03/22</td>
+                            <td><img src="assets/image/Z_MU.png" alt="SDR Flag"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -786,6 +857,12 @@
                 <h3>2025/07/09 14:11   1.1.0709.a</h3>
                 <h5>外交名單 Diplomatic List</h5>
                 <p>增加邦交國瓦瑞希爾王國(<strong>🔶大使級</strong>)、華陽聯邦民主共和國(<strong>🔶大使級</strong>)</p>
+            </div>
+            <hr>
+            <div>
+                <h3>2025/07/22 17:16   1.1.0722</h3>
+                <h5>外交名單 / 加入組織</h5>
+                <p>增加已加入組織名單</p>
             </div>
         </section>
     </main>
